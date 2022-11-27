@@ -8,14 +8,14 @@ function Buscador(){
     const submitHandler = e => {
         e.preventDefault();
         const keyword = e.currentTarget.keyword.value.trim();
-        console.log(keyword);
         if (keyword.length === 0){
             swal(<h5>Debes escribir una palabra clave</h5>)
         } else if (keyword.length <4){
             swal(<h5>Debes escribir al menos 4 caracteres</h5>)
         } else {
             e.currentTarget.keyword.value = '';
-            navigate(`./resultados?palabra-clave=${keyword}`)
+            navigate(`./resultados?keyword=${keyword}`)
+            console.log(keyword)
         }
     }
 

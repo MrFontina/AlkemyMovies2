@@ -37,9 +37,9 @@ function Listado(){
                          <h5 className="card-title">{oneMovie.title.substring(0,20)}</h5>
                          <p className="card-text">{oneMovie.overview.substring(0, 70)}...</p>
                          <Link to={`/detalle?movieID=${oneMovie.id}`} className="btn btn-primary">View detail</Link>
+                        </div>
                     </div>
-                </div>
-            </div>
+        </div>
 
                 )
             })}

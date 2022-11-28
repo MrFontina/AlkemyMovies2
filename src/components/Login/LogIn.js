@@ -17,21 +17,19 @@ function LogIn() {
         };
 
         if(email !== "" && !regexEmail.test(email)){
-            swal("email no valido");
+            swal("Email no valido");
             return;
         }
 
         if(email !== "challenge@alkemy.org" || password !== "react"){
-            swal("credenciales invalidas")
+            swal("Credenciales invalidas")
             return;
         }
-        console.log("vas ganando!")
         axios.post('http://challenge-react.alkemy.org',{ email, password })
         .then(res => {
             swal("Perfecto!Ingresaste correctamente")
             const tokenRecibido = res.data.token
             sessionStorage.setItem('token', tokenRecibido)
-            console.log(res.data)
             navigate("/listado")
         })
 

@@ -5,7 +5,7 @@ import swal from "sweetalert";
 
 
 
-function Listado(){
+function Listado({addOrRemoveFromFavs}){
 
         let token = sessionStorage.getItem('token');  
         const [ moviesList, setMoviesList ] = useState([]);
@@ -33,6 +33,10 @@ function Listado(){
                     <div className="col-3" key={idx}>
                          <div className="card my-4">
                                 <img src={`https://image.tmdb.org/t/p/w500/${oneMovie.poster_path}`} className="card-img-top" alt="..."/>
+                                <button className="favourite-btn" 
+                                        onClick={addOrRemoveFromFavs}
+                                        data-movie-id={oneMovie.id}
+                                        >🖤</button>
                             <div className="card-body">
                               <h5 className="card-title">{oneMovie.title.substring(0,20)}</h5>
                               <p className="card-text">{oneMovie.overview.substring(0, 70)}...</p>

@@ -1,50 +1,75 @@
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import swal from "@sweetalert/with-react";
 
-function Resultados(){
+function Resultados() {
 
-    const [ moviesResults, setMoviesResults ] = useState([])
-    let query = new URLSearchParams(window.location.search);
-    let kword = query.get('keyword')
-    
-
-    
+    let params = useParams();
+    let keyword = params.keyword;
+    const [ moviesResults, setMoviesResults] = useState([]);
 
     useEffect(()=>{
-        const endPoint = `https://api.themoviedb.org/3/search/movie?api_key=0e6fd45b62bd6a7274862fb9a8d218a1&language=es-ES&page=1&include_adult=false&query=${kword}`
+        const endPoint = `https://api.themoviedb.org/3/search/movie?api_key=0e6fd45b62bd6a7274862fb9a8d218a1&language=es-ES&page=1&include_adult=false&query=${keyword}`
         axios.get(endPoint)
-        .then((response) => {
-            const moviesArray = response.data.results;
+        .then((res)=>{
+            const moviesArray = res.data.results
+
+            if(moviesArray.length === 0){
+                swal(<h5>No se encontraron resultados</h5>)
+            }
+
             setMoviesResults(moviesArray)
         })
         .catch(error=>{
             console.log(error)
         })
-    }, [kword])
+    },[keyword])
+    
+
     
 
 
     return(
         <>
-        <h2>Buscaste: {kword} </h2>
-        <div className="row">
-        {moviesResults.map((oneMovie, idx) =>{
+        <h2>Buscaste: {keyword} </h2>
+
+        { moviesResults.length === 0 ? <h3>No hay resultados</h3> :
+
+            <div className="row">
+            {moviesResults.map((movie, idx)=>{                
             return(
-                <div className="col-4" key={idx}>
+                <div className="col-3" key={idx}>
+                             <div className="card my-4">
+                                    <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="card-img-top" alt="..."/>
+                                <div className="card-body">
+                                  <h5 className="card-title">{movie.title.substring(0,20)}</h5>
+                                  <p className="card-text">{movie.overview.substring(0, 70)}...</p>
+                                  <Link to={`/detalle?movieID=${movie.id}`} className="btn btn-primary">View detail</Link>
+                                </div>
+                             </div>
+                        </div>)})}
+                </div>           
+        }
+
+        <div className="row">
+        {moviesResults.map((movie, idx)=>{
+            
+        return(
+            <div className="col-3" key={idx}>
                          <div className="card my-4">
-                            <img src={`https://image.tmdb.org/t/p/w500/${oneMovie.poster_path}`} className="card-img-top" alt="..."/>
+                                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="card-img-top" alt="..."/>
                             <div className="card-body">
-                             <h5 className="card-title">{oneMovie.title.substring(0,20)}</h5>
-                             <p className="card-text">{oneMovie.overview.substring(0, 70)}...</p>
-                             <Link to={`/detalle?movieID=${oneMovie.id}`} className="btn btn-primary">View detail</Link>
+                              <h5 className="card-title">{movie.title.substring(0,20)}</h5>
+                              <p className="card-text">{movie.overview.substring(0, 70)}...</p>
+                              <Link to={`/detalle?movieID=${movie.id}`} className="btn btn-primary">View detail</Link>
                             </div>
                          </div>
-                </div>
-            )
-        })}
-        </div>
+                    </div>)})}
+       </div>
         </>
+        
     )
 }
 

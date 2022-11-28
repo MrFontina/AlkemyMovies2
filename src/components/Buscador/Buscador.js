@@ -3,8 +3,8 @@ import swal from "@sweetalert/with-react";
 
 function Buscador(){
 
-    const navigate = useNavigate();
-
+   
+    const navigate = useNavigate()
     const submitHandler = e => {
         e.preventDefault();
         const keyword = e.currentTarget.keyword.value.trim();
@@ -14,8 +14,7 @@ function Buscador(){
             swal(<h5>Debes escribir al menos 4 caracteres</h5>)
         } else {
             e.currentTarget.keyword.value = '';
-            navigate(`./resultados?keyword=${keyword}`)
-            console.log(keyword)
+            navigate(`/resultados/${keyword}`)
         }
     }
 

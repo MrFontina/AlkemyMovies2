@@ -19,7 +19,7 @@ function App() {
     <Route exact path="/" element={<LogIn/>}/>
     <Route path="/listado" element={<Listado/>}/>
     <Route path="/detalle" element={<Detalle/>}/>
-    <Route path="/resultados" element={<Resultados/>}/>
+    <Route path="/resultados/:keyword" element={<Resultados/>}/>
     </Routes>
     </div>
     <Footer/>

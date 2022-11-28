@@ -2,7 +2,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import swal from "@sweetalert/with-react";
+import swal from "sweetalert";
+
 
 function Resultados() {
 
@@ -17,7 +18,7 @@ function Resultados() {
             const moviesArray = res.data.results
 
             if(moviesArray.length === 0){
-                swal(<h5>No se encontraron resultados</h5>)
+                swal("No se encontraron resultados")
             }
 
             setMoviesResults(moviesArray)

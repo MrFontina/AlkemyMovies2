@@ -1,5 +1,5 @@
 import axios from "axios";
-import swal from "@sweetalert/with-react";
+import swal from "sweetalert";
 import { useNavigate, Navigate } from "react-router-dom";
 
 function LogIn() {
@@ -12,23 +12,23 @@ function LogIn() {
         const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
         if(email === "" || password === ""){
-            swal(<h2>Los campos no pueden estar vacios</h2>)
+            swal("Los campos no pueden estar vacios")
             return;
         };
 
         if(email !== "" && !regexEmail.test(email)){
-            swal(<h2>"email no valido"</h2>);
+            swal("email no valido");
             return;
         }
 
         if(email !== "challenge@alkemy.org" || password !== "react"){
-            swal(<h2>"credenciales invalidas"</h2>)
+            swal("credenciales invalidas")
             return;
         }
         console.log("vas ganando!")
         axios.post('http://challenge-react.alkemy.org',{ email, password })
         .then(res => {
-            swal(<h2>Perfecto!Ingresaste correctamente</h2>)
+            swal("Perfecto!Ingresaste correctamente")
             const tokenRecibido = res.data.token
             sessionStorage.setItem('token', tokenRecibido)
             console.log(res.data)

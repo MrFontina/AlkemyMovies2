@@ -1,4 +1,5 @@
-import { Navigate, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
+// import { Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
@@ -7,7 +8,7 @@ import swal from "sweetalert";
 
 function Listado({addOrRemoveFromFavs}){
 
-        let token = sessionStorage.getItem('token');  
+        // let token = sessionStorage.getItem('token');  
         const [ moviesList, setMoviesList ] = useState([]);
 
         useEffect(()=>{
@@ -25,7 +26,7 @@ function Listado({addOrRemoveFromFavs}){
 
     return(
      <>
-        {!token ? <Navigate to="/" replace/> :
+        {/* {!token ? <Navigate to="/" replace/> : */}
         <div className="row">
             {moviesList.map((oneMovie, idx)=>{
                 return(
@@ -35,8 +36,7 @@ function Listado({addOrRemoveFromFavs}){
                                 <img src={`https://image.tmdb.org/t/p/w500/${oneMovie.poster_path}`} className="card-img-top" alt="..."/>
                                 <button className="favourite-btn" 
                                         onClick={addOrRemoveFromFavs}
-                                        data-movie-id={oneMovie.id}
-                                        >🖤</button>
+                                        data-movie-id={oneMovie.id}>🖤</button>
                             <div className="card-body">
                               <h5 className="card-title">{oneMovie.title.substring(0,20)}</h5>
                               <p className="card-text">{oneMovie.overview.substring(0, 70)}...</p>
@@ -49,7 +49,7 @@ function Listado({addOrRemoveFromFavs}){
             
             
         </div>
-        }
+        {/* } */}
      </>
     )
 }

@@ -1,12 +1,12 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function Favoritos({ addOrRemoveFromFavs, favoritos }){
 
-    let token = sessionStorage.getItem('token'); 
+    // let token = sessionStorage.getItem('token'); 
 
     return(
         <>
-        {!token ? <Navigate to="/" replace /> : 
+        {/* {!token ? <Navigate to="/" replace /> :  */}
 
         <div>
             <h2>Tus favoritos:</h2>
@@ -33,7 +33,7 @@ function Favoritos({ addOrRemoveFromFavs, favoritos }){
         }
         </div>
 
-        }
+        {/* } */}
         
         
         

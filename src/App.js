@@ -1,4 +1,4 @@
-import LogIn from "./components/Login/LogIn";
+// import LogIn from "./components/Login/LogIn";
 import Listado from "./components/Listado/Listado";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -74,8 +74,9 @@ function App() {
     <Header favoritos={favoritos}/>
     <div className="container nt-3">
     <Routes>
-    <Route exact path="/" element={<LogIn/>}/>
-    <Route path="/listado" element={<Listado addOrRemoveFromFavs={addOrRemoveFromFavs} />}/>
+    {/* <Route exact path="/" element={<LogIn/>}/> */}
+    <Route path="/" element={<Listado addOrRemoveFromFavs={addOrRemoveFromFavs}/>} />
+    {/* <Route path="/listado" element={<Listado addOrRemoveFromFavs={addOrRemoveFromFavs} />}/> */}
     <Route path="/detalle" element={<Detalle/>}/>
     <Route path="/resultados/:keyword" element={<Resultados addOrRemoveFromFavs={addOrRemoveFromFavs}/>}/>
     <Route path="/favoritos" element={<Favoritos favoritos={favoritos} addOrRemoveFromFavs={addOrRemoveFromFavs}/>}/>

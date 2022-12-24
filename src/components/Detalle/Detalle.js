@@ -1,10 +1,10 @@
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Detalle (){
 
-    let token = sessionStorage.getItem('token'); 
+    // let token = sessionStorage.getItem('token'); 
     const [ movie, setMovie ] = useState(null) 
     let query =  new URLSearchParams(window.location.search);
     let movieID = query.get('movieID')
@@ -26,10 +26,9 @@ function Detalle (){
     return( 
        
         <>
-            {!token ? <Navigate to="/"/> : 
+            {/* {!token ? <Navigate to="/"/> :  */}
             
-            movie ? 
-              <>
+           { movie ? <>
                 <h2>{movie.title}</h2>
                 <div className="row">
                     <div className="col-4">
@@ -46,10 +45,15 @@ function Detalle (){
                         </ul>
                     </div>
                 </div>
-              </>               
+              </>          
+                : <h2>cargando...</h2> 
+
+
+           }  
                 
-            : <h2>cargando...</h2>
-            }             
+                
+           
+            {/* }              */}
         </>
     )
 }
